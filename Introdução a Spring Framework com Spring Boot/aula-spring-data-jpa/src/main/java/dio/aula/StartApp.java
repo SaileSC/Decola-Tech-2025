@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.net.SocketOption;
+
 @Component
 public class StartApp implements CommandLineRunner {
     @Autowired
@@ -14,13 +16,18 @@ public class StartApp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         User user = new User();
-        user.setName("Saile");
+        user.setName("Elias Costa");
         user.setUsername("SaileSC");
         user.setPassword("Saile123");
 
-        createUser(user);
+        //createUser(user);
         listUsers();
 
+        System.out.println("Usando DATA method");
+        System.out.println(userRepository.findByNameContaining("Saile"));
+
+        System.out.println("Usando DATA overrid");
+        System.out.println(userRepository.filtrarPorNome("Saile"));
     }
 
     private void createUser(User user){
